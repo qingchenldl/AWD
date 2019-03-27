@@ -1,0 +1,216 @@
+{include file="public/header" /}
+ <link href="/static/admin/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>订单列表</h5>
+        </div>
+        <div class="ibox-content">
+            <!--搜索框开始--> 
+
+            <div class="row">
+                 <form name="admin_list_sea" class="form-search" method="post" action="{:url('search')}">
+                        <div class="col-sm-6">
+                            <div class="input-group date" style="width:70%; float:left">
+                               
+                                <input placeholder="开始日期" name="start" class="form-control layer-date" id="start">
+                                            <input placeholder="结束日期" name="end" class="form-control layer-date" id="end">
+                            </div>  
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的代理ID" value="{$val}"/>  
+                                                        
+                                <span class="input-group-btn"> 
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button> 
+                                </span>
+                            </div>
+                        </div>
+                    </form>           
+            </div>
+
+            <div class="row">
+                 <form name="admin_list_sea" class="form-search" method="post" action="{:url('index')}">
+                        <div class="col-sm-6">
+                            <div class="input-group date" style="width:50%; float:left">
+                                <span class="input-group-addon" onclick="laydate({elem: '#riqi'})"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control" name="riqi" id="riqi"  onclick="laydate()" placeholder="选择日期" value="{$riqi}">
+                            </div>  
+                            <div class="input-group">
+                                <input type="text" id="key" class="form-control" name="key" value="{$val}" placeholder="输入需查询的代理ID" value="{$val}"/>  
+                                                        
+                                <span class="input-group-btn"> 
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button> 
+                                </span>
+                            </div>
+                        </div>
+                    </form>           
+            </div>
+
+
+            <!--搜索框结束-->
+             <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>{if !empty($val)}代理id:({$val})_{/if}{if !empty($day)}{$day}{else}今日{/if}订单笔数</th>
+                                <th>{if !empty($val)}代理id:({$val})_{/if}{if !empty($zuori)}{$zuori}{else}昨日{/if}订单笔数</th>
+                                <th>{if !empty($val)}代理id:({$val})_{/if}{if !empty($day)}{$day}{else}今日{/if}订单总金额</th>
+                                <th>{if !empty($val)}代理id:({$val})_{/if}{if !empty($zuori)}{$zuori}{else}昨日{/if}订单总金额</th>
+                                <th>{if !empty($val)}代理id:({$val})_{/if}历史总笔数</th>
+                                 <th>{if !empty($val)}代理id:({$val})_{/if}历史总金额</th>
+                               
+                            </tr>
+                        </thead>
+                       
+                          
+                           
+                        <tbody >  
+                            
+                            <tr class="long-td">
+                                 <td>{$daydd}</td>
+                                <td>{$zdd}</td>
+                                <td>{if !empty($money1)}{$money1}元{else}0元{/if}</td>
+                                <td>{if !empty($money2)}{$money2}元{else}0元{/if}</td>
+                                 <td>{$zong}</td>
+                               <td>{if !empty($money3)}{$money3}元{else}0元{/if}</td>
+                               
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                  
+                </div>
+            </div>
+            
+            
+            <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+                                <th>ID</th>
+                                <th>代理ID</th>
+                                <th>资源ID</th>
+                                <th>资源名称</th>
+                                <th>打赏金额</th>
+                                 <th>订单时间</th>
+                                <th>订单号</th>
+                                <th>微信订单号</th>
+                            </tr>
+                        </thead>
+                        <script id="list-template" type="text/html">
+                            {{# for(var i=0;i<d.length;i++){  }}
+                            <tr class="long-td">
+                                 <td>{{d[i].id}}</td>
+                                <td>{{d[i].userid}}</td>
+                                <td>{{d[i].zyid}}</td>
+                                <td>
+                                <span id="name{{d[i].id}}">******</span> <a onclick="show('{{d[i].id}}','{{d[i].zymc}}')" id='show{{d[i].id}}' style="color:#ff0000">点击显示</a>
+                                </td>
+                                 <td>{{d[i].money}}</td>
+                               <td>{{d[i].shijian}}</td>
+                                <td>{{d[i].ddh}}</td>
+                                 <td>{{d[i].wxddh}}</td>
+                               
+                            </tr>
+                            {{# } }}
+                        </script>
+                        <tbody id="list-content"></tbody>
+                    </table>
+                    <div id="AjaxPage" style=" text-align: right;"></div>
+                    <div id="allpage" style=" text-align: right;"></div>
+                </div>
+            </div>
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+<!-- 加载动画 -->
+<div class="spiner-example">
+    <div class="sk-spinner sk-spinner-three-bounce">
+        <div class="sk-bounce1"></div>
+        <div class="sk-bounce2"></div>
+        <div class="sk-bounce3"></div>
+    </div>
+</div>
+
+{include file="public/footer" /}
+
+
+<script type="text/javascript">
+    
+  
+
+    var start={elem:"#start",format:"YYYY/MM/DD hh:mm:ss",min:"2001-01-01 00:00:00",max:"2099-06-16 23:59:59",istime:true,istoday:false,choose:function(datas){end.min=datas;end.start=datas}};
+
+    var end={elem:"#end",format:"YYYY/MM/DD hh:mm:ss",min:"2001-01-01 00:00:00",max:"2099-06-16 23:59:59",istime:true,istoday:false,choose:function(datas){start.max=datas}};
+    laydate(start);
+    laydate(end);
+    
+    //laypage分页
+    Ajaxpage();
+    function Ajaxpage(curr){
+        var key=$('#key').val();
+        var riqi=$('#riqi').val();
+        $.getJSON('{:url("order/index")}', {page: curr || 1,key:key,riqi:riqi}, function(data){
+            $(".spiner-example").css('display','none'); //数据加载完关闭动画 
+            if(data==''){
+                $("#list-content").html('<td colspan="20" style="padding-top:10px;padding-bottom:10px;font-size:16px;text-align:center">暂无数据</td>');
+            }else{
+                var tpl = document.getElementById('list-template').innerHTML;
+                laytpl(tpl).render(data, function(html){
+                    document.getElementById('list-content').innerHTML = html;
+                });
+                laypage({
+                    cont: $('#AjaxPage'),//容器。值支持id名、原生dom对象，jquery对象,
+                    pages:'{$allpage}',//总页数
+                    skip: true,//是否开启跳页
+                    skin: '#1AB5B7',//分页组件颜色
+                    curr: curr || 1,
+                    groups: 3,//连续显示分页数
+                    jump: function(obj, first){
+                        if(!first){
+                            Ajaxpage(obj.curr)
+                        }
+                        $('#allpage').html('第'+ obj.curr +'页，共'+ obj.pages +'页');
+                    }
+                });
+            }
+        });
+    }
+
+//编辑订单
+function edit_yqm(id){
+    location.href = './edit_yqm/id/'+id+'.html';
+}
+
+//删除订单
+function del_yqm(id){
+    dashang.confirm(id,'{:url("del_yqm")}');
+}
+
+function sc_yqm(){
+    dashang.fangwen('{:url("shengcheng")}');
+}
+
+function show(id,name) {
+var zt = $("#show"+id+"").html();
+if(zt=='点击显示'){  
+$("#name"+id+"").html(name);
+$("#show"+id+"").html('点击隐藏');
+}else if(zt=='点击隐藏'){  
+$("#name"+id+"").html('****');
+$("#show"+id+"").html('点击显示');
+}
+}
+
+</script>
+</body>
+</html>

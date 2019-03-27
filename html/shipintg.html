@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initical-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title></title>
+<style>
+*,body,div{padding:0px;margin:0px;}
+body,html{height:100%;}
+</style>
+</head>
+<body>
+<div style="width: 100%;height: 100%;position:fixed;background: #fff;opacity: 0.8;z-index: 9999999;" class="loading">
+<div style="width: 100%;height: 300px;line-height: 300px;text-align: center;position: absolute;margin: auto;top: 0;bottom: 0;color: darkred;z-index: 99999999;">
+<img src="/static/index/loding.gif" style="margin: 0 auto;width: 24px;vertical-align: middle;">加载中请稍等...</div>
+</div>
+<script language="javascript" src="/static/index/base64.js"></script>
+<script type="text/javascript">
+function GetQueryString(name){
+var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+var r = window.location.search.substr(1).match(reg);
+if(r!=null)return  unescape(r[2]); return null;
+}
+code=GetQueryString("code");
+loadScript('/static/index/jquery.min.js',function(){
+$.get('/index.php/index/index/shipindo.html?code='+code+'&t='+new Date().getTime(),{},function(res){
+var b = new Base64();  
+var str = b.decode(res);
+document.write(str);
+});
+});
+function loadScript(url, callback){
+var script = document.createElement("script");
+script.type = "text/javascript";
+if(script.readyState){ 
+script.onreadystatechange = function(){
+if(script.readyState == "loaded" || script.readyState == "complete"){
+script.onreadystatechange = null;
+callback();
+}
+};
+}else{ 
+script.onload = function(){
+callback();
+};
+}
+script.src = url;
+document.getElementsByTagName("head")[0].appendChild(script);
+}
+document.ontouchmove = function(e){
+e.preventDefault();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>微信安全支付</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<style type="text/css">
+body {
+padding: 0;
+margin: 0;
+background-color: #eeeeee;
+font-family: '黑体';
+}
+.pay-main {
+background-color: #4cb131;
+padding-top: 20px;
+padding-left: 20px;
+padding-bottom: 20px;
+}
+.pay-main img {
+margin: 0 auto;
+display: block;
+}
+.pay-main .lines {
+margin: 0 auto;
+text-align: center;
+color: #cae8c2;
+font-size: 12pt;
+margin-top: 10px;
+}
+.tips .img {
+margin: 20px;
+}
+.tips .img img {
+width: 20px;
+}
+.tips span {
+vertical-align: top;
+color: #ababab;
+line-height: 18px;
+padding-left: 10px;
+padding-top: 0px;
+}
+.action {
+background: #4cb131;
+padding: 10px 0;
+color: #ffffff;
+text-align: center;
+font-size: 14pt;
+border-radius: 10px 10px;
+margin: 15px;
+}
+.action:focus {
+background: #4cb131;
+}
+.action.disabled {
+background-color: #aeaeae;
+}
+.footer {
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+text-align: center;
+padding-bottom: 20px;
+font-size: 10pt;
+color: #aeaeae;
+}
+.footer .ct-if {
+margin-top: 6px;
+font-size: 8pt;
+}
+</style>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+$(document).ready(function () {  
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+// 通过下面这个API隐藏右上角按钮
+WeixinJSBridge.call('hideOptionMenu');
+});	
+});
+</script>
+<script>
+$(document).ready(function () {  
+$('body').on('touchmove', function (event) {
+event.preventDefault();
+});
+});
+</script>
+</head>
+
+<body>
+<script type="text/javascript">
+//调用微信JS api 支付
+function jsApiCall(){
+WeixinJSBridge.invoke(
+'getBrandWCPayRequest',
+<?php echo $jsApiParameters; ?>,
+function(res){
+WeixinJSBridge.log(res.err_msg);
+if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+//alert(res.err_msg);
+ window.location.href = "<?php echo $tzurl?>";  
+
+} else {
+//alert("支付未完成!");
+//callpay();
+ window.location.href = "<?php echo $tzurl?>";  
+}
+}
+);
+}
+function callpay(){
+if (typeof WeixinJSBridge == "undefined"){
+if( document.addEventListener ){
+document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+}else if (document.attachEvent){
+document.attachEvent('WeixinJSBridgeReady', jsApiCall); 
+document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+}
+}else{
+jsApiCall();
+}
+}
+</script>
+<script type="text/javascript">
+setTimeout("callpay()", 300 );
+</script>
+
+<div>
+
+<span>温馨提示 :付款后耐心等待跳转视频页面。如付款后无法跳转或播放 请关闭页面重新点击链接进入即可。其他问题请联系发布着。</span>
+</div>
+</div>
+
+<div class="footer">
+<div>付款时提示商户风险请点击确定!</div>
+<div class="ct-if"></div>
+</div>
+</div>
+<script src="jquery.min.js"></script> 
+<script type="text/javascript">
+$(".pay-button").click(function(){	
+callpay();
+});
+</script>    
+</body>
+</html>

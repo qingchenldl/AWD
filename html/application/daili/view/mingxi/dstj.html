@@ -1,0 +1,122 @@
+{include file="public/header" /}
+ <link href="/static/admin/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+ 
+ 
+ 
+ 
+<body class="gray-bg">
+<div class="{if $ismobile==0}wrapper wrapper-content{/if} animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>打赏统计</h5>
+        </div>
+        <div class="ibox-content">
+		{if $ismobile==0}
+            <!-- 内容主体区域 -->
+			<div style="padding: 15px;">
+			<fieldset class="layui-elem-field layui-field-title" style="">
+			<legend>数据曲线图</legend>
+			</fieldset>
+			<div class="container-fluid">
+			<canvas id="canvas" height="270" width="600" ></canvas>
+			</div>
+
+			</div>
+		{else}
+		<div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+								
+								
+                               
+                                <th>时间</th>
+                               
+                                <th>今天</th>
+								
+                                <th>昨天</th>
+								
+								
+                            </tr>
+                        </thead>
+                        
+                          
+								
+                               
+                                
+                           
+                        <tbody id="list-content">
+						
+							{for start="0" end="24"}
+							<tr>
+								<td>{$i}点</td>
+                               <td><?php $tmp = 'sj';$tmp .= $i;echo $$tmp; ?></td>
+                                
+							  
+								 <td><?php $tmp = 'dj';$tmp .= $i;echo $$tmp; ?></td>
+								
+                            </tr>
+							{/for}
+							
+						</tbody>
+                    </table>
+                   
+                </div>
+				
+            </div>
+            </div>
+		{/if}
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+
+
+{include file="public/footer" /}
+{if $ismobile==0}
+<script src="__JS__/Chart.min.js"></script>
+
+<script>
+var randomScalingFactor = function(){ return Math.round(Math.random()*100)};
+var lineChartData = {
+labels : ["0点","1点","2点","3点","4点","5点","6点","7点","8点","9点","10点","11点","12点","13点","14点","15点","16点","17点","18点","19点","20点","21点","22点","23点"],
+datasets : [
+{
+label: "My First dataset",
+fillColor : "rgba(51,204,113,0.1)",
+strokeColor : "rgba(51,204,113,1)",
+pointColor : "rgba(51,204,113,1)",
+pointStrokeColor : "#fff",
+pointHighlightFill : "#fff",
+pointHighlightStroke : "rgba(220,220,220,1)",
+data : ["<?php echo round($sj0,2)?>","<?php echo round($sj1,2)?>","<?php echo round($sj2,2)?>","<?php echo round($sj3,2)?>","<?php echo round($sj4,2)?>","<?php echo round($sj5,2)?>","<?php echo round($sj6,2)?>","<?php echo round($sj7,2)?>","<?php echo round($sj8,2)?>","<?php echo round($sj9,2)?>","<?php echo round($sj10,2)?>","<?php echo round($sj11,2)?>","<?php echo round($sj12,2)?>","<?php echo round($sj13,2)?>","<?php echo round($sj14,2)?>","<?php echo round($sj15,2)?>","<?php echo round($sj16,2)?>","<?php echo round($sj17,2)?>","<?php echo round($sj18,2)?>","<?php echo round($sj19,2)?>","<?php echo round($sj20,2)?>","<?php echo round($sj21,2)?>","<?php echo round($sj22,2)?>","<?php echo round($sj23,2)?>"]
+}
+,
+{
+label: "My Second dataset",
+fillColor : "rgba(138,140,115,0.2)",
+strokeColor : "rgba(138,140,115,1)",
+pointColor : "rgba(138,140,115,1)",
+pointStrokeColor : "#fff",
+pointHighlightFill : "#fff",
+pointHighlightStroke : "rgba(151,187,205,1)",
+data : ["<?php echo round($dj0,2)?>","<?php echo round($dj1,2)?>","<?php echo round($dj2,2)?>","<?php echo round($dj3,2)?>","<?php echo round($dj4,2)?>","<?php echo round($dj5,2)?>","<?php echo round($dj6,2)?>","<?php echo round($dj7,2)?>","<?php echo round($dj8,2)?>","<?php echo round($dj9,2)?>","<?php echo round($dj10,2)?>","<?php echo round($dj11,2)?>","<?php echo round($dj12,2)?>","<?php echo round($dj13,2)?>","<?php echo round($dj14,2)?>","<?php echo round($dj15,2)?>","<?php echo round($dj16,2)?>","<?php echo round($dj17,2)?>","<?php echo round($dj18,2)?>","<?php echo round($dj19,2)?>","<?php echo round($dj20,2)?>","<?php echo round($dj21,2)?>","<?php echo round($dj22,2)?>","<?php echo round($dj23,2)?>"]
+}
+
+]
+}
+window.onload = function(){
+var ctx = document.getElementById("canvas").getContext("2d");
+window.myLine = new Chart(ctx).Line(lineChartData, {
+responsive: true
+});
+}
+{/if}
+</script>
+</body>
+</html>

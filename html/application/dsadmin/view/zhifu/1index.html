@@ -1,0 +1,281 @@
+{include file="public/header" /}
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/style.css">
+<style>
+.file-item{float: left; position: relative; width: 110px;height: 110px; margin: 0 20px 20px 0; padding: 4px;}
+.file-item .info{overflow: hidden;}
+.uploader-list{width: 100%; overflow: hidden;}
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>{if config("zfjk")==1}微信{/if}{if config("zfjk")==2}U{/if}{if config("zfjk")==3}云{/if}支付设置</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="form_basic.html#">
+                            <i class="fa fa-wrench"></i>
+                        </a>
+                        <a class="close-link">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                
+                
+                
+                    <form class="form-horizontal m-t" name="add" id="add" method="post" action="index">
+                        
+                        
+                        {if config("zfjk")==1}
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <div class="form-group">
+                            <label class="col-sm-3 control-label">公众号(AppId)：</label>
+                            <div class="input-group col-sm-4">
+                                 <input id="wxappid" type="text" class="form-control" name="wxappid" placeholder="输入公众号(AppId)" value="{if !empty($content['wxappid'])}{$content['wxappid']}{/if}">
+                            </div>
+                            </div>
+                            
+                            <div class="form-group">
+                            <label class="col-sm-3 control-label">开发者密码(AppSecret)：</label>
+                            <div class="input-group col-sm-4">
+                                 <input id="AppSecret" type="text" class="form-control" name="AppSecret" placeholder="输入开发者密码(AppSecret)" value="{if !empty($content['AppSecret'])}{$content['AppSecret']}{/if}">
+                            </div>
+                            </div>
+                            
+                            
+                            <div class="form-group">
+                            <label class="col-sm-3 control-label">支付商户号(Mch_Id)：</label>
+                            <div class="input-group col-sm-4">
+                                 <input id="wxmchid" type="text" class="form-control" name="wxmchid" placeholder="输入支付商户号(Mch_Id)" value="{if !empty($content['wxmchid'])}{$content['wxmchid']}{/if}">
+                            </div>
+                            </div>
+                            
+                            <div class="form-group">
+                            <label class="col-sm-3 control-label">支付密钥(APIKEY)：</label>
+                            <div class="input-group col-sm-4">
+                                 <input id="wxapikey" type="text" class="form-control" name="wxapikey" placeholder="输入支付密钥(APIKEY)" value="{if !empty($content['wxapikey'])}{$content['wxapikey']}{/if}">
+                            </div>
+                            </div>
+
+                            <div class="form-group">
+                            <label class="col-sm-3 control-label">公众号域名：</label>
+                            <div class="input-group col-sm-4">
+                                 <input id="gzhename" type="text" class="form-control" name="gzhename" placeholder="公众号域名" value="{if !empty($content['gzhename'])}{$content['gzhename']}{/if}">
+                            </div>
+                            </div>
+                            
+                            <div class="form-group">
+                            <label class="col-sm-3 control-label">商户域名：</label>
+                            <div class="input-group col-sm-4">
+                                 <input id="shename" type="text" class="form-control" name="shename" placeholder="商户域名" value="{if !empty($content['shename'])}{$content['shename']}{/if}">
+                            </div>
+                            </div>
+                            
+                            
+                        {/if}
+                        
+                        {if config("zfjk")==2}
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">回掉地址：</label>
+                            <div class="input-group col-sm-4">
+                                <label class="control-label">http://域名/index.php/index/pay/uzhifu.html</label>
+                            </div>
+                        </div>
+                       
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">U支付密钥：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="ukey" type="text" class="form-control" name="ukey" placeholder="输入U支付密钥" value="{if !empty($content['ukey'])}{$content['ukey']}{/if}">
+                            </div>
+                        </div>
+                       {/if}
+
+                       {if config("zfjk")==3}
+                       
+                       
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">云支付商户编号：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="merId" type="text" class="form-control" name="merId" placeholder="输入云支付商户编号" value="{if !empty($content['merId'])}{$content['merId']}{/if}">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商户秘钥：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="key" type="text" class="form-control" name="key" placeholder="输入商户秘钥" value="{if !empty($content['key'])}{$content['key']}{/if}">
+                            </div>
+                        </div>
+                        
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">通知秘钥：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="notifyKey" type="text" class="form-control" name="notifyKey" placeholder="输入通知秘钥" value="{if !empty($content['notifyKey'])}{$content['notifyKey']}{/if}">
+                            </div>
+                        </div>
+
+                        
+
+
+                       {/if}
+                        
+                         {if config("zfjk")==4}
+                        
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">网关：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="wangguan" type="text" class="form-control" name="wangguan" placeholder="输入商户编号" value="{if !empty($content['wangguan'])}{$content['wangguan']}{/if}">
+                            </div>
+                        </div>
+                       
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商户编号：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="mch_id" type="text" class="form-control" name="mch_id" placeholder="输入商户编号" value="{if !empty($content['mch_id'])}{$content['mch_id']}{/if}">
+                            </div>
+                        </div>
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商户秘钥：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="key" type="text" class="form-control" name="key" placeholder="输入商户秘钥" value="{if !empty($content['key'])}{$content['key']}{/if}">
+                            </div>
+                        </div>
+                        
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">通知秘钥：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="notifyKey" type="text" class="form-control" name="notifyKey" placeholder="输入通知秘钥" value="{if !empty($content['notifyKey'])}{$content['notifyKey']}{/if}">
+                            </div>
+                        </div>
+
+                        
+
+
+                       {/if}
+                       
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>
+                               
+                            </div>
+                        </div>
+                        
+                        
+                        
+                    </form>
+                    
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+  {include file="public/footer" /}
+
+
+   
+
+<script type="text/javascript">
+
+
+   
+
+
+    $(function(){
+        $('#add').ajaxForm({
+            beforeSubmit: checkForm, // 此方法主要是提交前执行的方法，根据需要设置
+            success: complete, // 这是提交后的方法
+            dataType: 'json'
+        });
+
+        function checkForm(){
+        
+        {if config("zfjk")==1}
+            if( '' == $.trim($('#wxappid').val())){
+                layer.msg('公众号(AppId)不能为空', {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+             if( '' == $.trim($('#wxmchid').val())){
+                layer.msg('支付商户号(Mch_Id)不能为空', {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+             if( '' == $.trim($('#wxapikey').val())){
+                layer.msg('支付密钥(APIKEY)不能为空', {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        {/if}
+        
+        {if config("zfjk")==2}
+            if( '' == $.trim($('#ukey').val())){
+                layer.msg('U支付密钥不能为空', {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        {/if}
+     }
+
+        function complete(data){
+            if(data.code == 1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                    window.location.href="{:url('index')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1}, function(index){
+                    layer.close(index);
+                });
+                return false;
+            }
+        }
+
+    });
+
+
+    //IOS开关样式配置
+   var elem = document.querySelector('.js-switch');
+        var switchery = new Switchery(elem, {
+            color: '#1AB394'
+        });
+    var config = {
+        '.chosen-select': {},                    
+    }
+    for (var selector in config) {
+        $(selector).chosen(config[selector]);
+    }
+
+
+
+</script>
+</body>
+</html>

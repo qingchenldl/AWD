@@ -1,0 +1,31 @@
+{include file="public/header" /}
+ <link href="/static/admin/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+ 
+ 
+ 
+ 
+<body class="gray-bg">
+<div class="{if $ismobile==0}wrapper wrapper-content{/if} animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>{$gonggao.title}</h5>
+        </div>
+        <div class="ibox-content">
+           <blockquote class="layui-elem-quote layui-quote-nm">
+			<p></p><p>{$gonggao.content}<br></p><p></p>
+			<p style="color:#999;">发布时间：{$gonggao.create_time}</p>
+			</blockquote>
+			 
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+
+
+{include file="public/footer" /}
+
+</body>
+</html>

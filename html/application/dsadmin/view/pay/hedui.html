@@ -1,0 +1,106 @@
+{include file="public/header" /}
+ <link href="/static/admin/css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>{$userid}核对订单 </h5>
+        </div>
+        <div class="ibox-content">
+            
+           
+			 <div class="hr-line-dashed"></div>
+            <div class="example-wrap">
+                <div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+								<th>待支付笔数</th>
+                                <th>待支付金额 </th>
+                                <th>已支付笔数 </th>
+								<th>已支付金额 </th>
+								<th>总订单笔数 </th>
+								<th>总订单金额 </th>
+								<th>实际得款(扣除费率后) </th>
+								<th>账户余额 </th>
+								<th>历史提款金额记录 </th>
+								
+                            </tr>
+                        </thead>
+                       
+                          
+                           
+                        <tbody >  
+							
+							<tr class="long-td">
+								 <td>{$dzfbs}</td>
+                                <td>{$money1}元</td>
+                               <td>{$yzfbs}</td>
+                                <td>{$money2}元</td>
+							   <td>{$zddbs}</td>
+                                <td>{$money3}元</td>
+                               <td>{$sjmoney}元</td>
+							    <td>{$member.money}元</td>
+								<td>{$member.txmoney}元</td>
+                            </tr>
+						</tbody>
+                    </table>
+                  
+                </div>
+				
+				<div class="example">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr class="long-tr">
+								<th>今天订单笔数</th>
+                                <th>今天订单金额 </th>
+                                <th>昨日订单笔数 </th>
+								<th>昨日订单金额 </th>
+								<th>最近七天订单笔数 </th>
+								<th>最近七天订单金额 </th>
+								<th>最近一月订单笔数</th>
+								<th>最近一月订单金额 </th>
+								
+								
+                            </tr>
+                        </thead>
+                       
+                          
+                           
+                        <tbody >  
+							
+							<tr class="long-td">
+								 <td>{$jrddbs}</td>
+                                <td>{$jrddje}元</td>
+                               <td>{$zrddbs}</td>
+                                <td>{$zrddje}元</td>
+							   <td>{$qrddbs}</td>
+                                <td>{$qrddje}元</td>
+                               <td>{$ssrddbs}</td>
+							    <td>{$ssddje}元</td>
+								
+                            </tr>
+						</tbody>
+                    </table>
+                  
+                </div>
+				
+				
+            </div>
+			
+			
+            
+            
+            <!-- End Example Pagination -->
+        </div>
+    </div>
+</div>
+<!-- End Panel Other -->
+</div>
+
+
+
+{include file="public/footer" /}
+</body>
+</html>

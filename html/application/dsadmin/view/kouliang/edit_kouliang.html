@@ -1,0 +1,119 @@
+{include file="public/header" /}
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/webuploader.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/webupload/style.css">
+<style>
+.file-item{float: left; position: relative; width: 110px;height: 110px; margin: 0 20px 20px 0; padding: 4px;}
+.file-item .info{overflow: hidden;}
+.uploader-list{width: 100%; overflow: hidden;}
+</style>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>编辑扣量</h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+                    <form class="form-horizontal" name="edit_kouliang" id="edit_kouliang" method="post" action="{:url('edit_kouliang')}">
+                        <input type="hidden" name="id" value="{$kouliang.id}">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">代理选择：</label>
+                            <div class="input-group col-sm-4">
+                                 <select class="form-control m-b chosen-select" name="userid" id="userid">
+								  <option value="0">请选择</option>
+								  
+								  
+                                  {volist name="memberlist" id="vo"}
+									
+									  <option value="{$vo.id}" {if $vo['id']==$kouliang['userid']}selected{/if}>{$vo.nickname}({$vo.id})</option>
+									{/volist}
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">初始值：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="cs" type="text" class="form-control" name="cs" placeholder="请输入初始值" value="{$kouliang.cs}">
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">倒数值：</label>
+                            <div class="input-group col-sm-4">
+                                <input id="ns" type="text" class="form-control" name="ns" placeholder="请输入倒数值" value="{$kouliang.ns}">
+                            </div>
+                        </div>
+                        
+                        <div class="hr-line-dashed"></div>
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-3">
+                                <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> 保存</button>&nbsp;&nbsp;&nbsp;
+                                <a class="btn btn-danger" href="javascript:history.go(-1);"><i class="fa fa-close"></i> 返回</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="public/footer" /}
+
+<script type="text/javascript">
+   
+
+    //提交
+    $(function(){
+        $('#edit_kouliang').ajaxForm({
+            beforeSubmit: checkForm, 
+            success: complete, 
+            dataType: 'json'
+        });
+        
+        function checkForm(){
+           if( 0 == $.trim($('#userid').val())){
+                layer.msg('请选择代理',{icon:2,time:1500,shade: 0.1}, function(index){
+                layer.close(index);
+                });
+                return false;
+            }
+            if( '' == $.trim($('#cs').val())){
+                layer.msg('请输入初始值',{icon:2,time:1500,shade: 0.1}, function(index){
+                layer.close(index);
+                });
+                return false;
+            }
+
+            if( '' == $.trim($('#ns').val())){
+                layer.msg('请输入倒数值',{icon:2,time:1500,shade: 0.1}, function(index){
+                layer.close(index);
+                });
+                return false;
+            }
+                       
+
+        }
+
+        function complete(data){
+            if(data.code==1){
+                layer.msg(data.msg, {icon: 6,time:1500,shade: 0.1}, function(index){
+                    window.location.href="{:url('kouliang/index')}";
+                });
+            }else{
+                layer.msg(data.msg, {icon: 5,time:1500,shade: 0.1});
+                return false;   
+            }
+        }   
+    });
+
+</script>
+</body>
+</html>

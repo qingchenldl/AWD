@@ -1,0 +1,202 @@
+﻿html {
+	font-family: "微软雅黑", "宋体", arial;
+	font-size: 14px;
+	background-color: #f2f2f2;
+}
+
+a,
+body,
+center,
+cite,
+code,
+dd,
+del,
+div,
+dl,
+dt,
+em,
+fieldset,
+figcaption,
+figure,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hr,
+html,
+img,
+input,
+label,
+legend,
+li,
+mark,
+ol,
+p,
+section,
+span,
+strong,
+textarea,
+time,
+ul,
+var input {
+	margin: 0;
+	border: 0;
+	padding: 0;
+	font-style: normal;
+	color: #323232;
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	/* Firefox */
+	-webkit-box-sizing: border-box;
+	/* Safari */
+}
+
+body,
+html {
+	/*-webkit-touch-callout: none;
+	-webkit-text-size-adjust: none;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;*/
+}
+
+article,
+aside,
+details,
+fieldset,
+figcaption,
+figure,
+footer,
+header,
+main,
+nav,
+section {
+	display: block;
+}
+
+a,
+button,
+cite,
+code,
+del,
+em,
+img,
+label,
+mark,
+small,
+strong,
+textarea,
+time,
+var {
+	display: inline-block;
+}
+
+footer,
+header,
+section {
+	position: relative;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+button,
+input,
+textarea {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 1em;
+	line-height: 1em;
+	background-color: transparent;
+}
+
+span {
+	display: inline-block;
+}
+
+a:active,
+a:hover {
+	outline: 0;
+}
+
+a,
+a:visited {
+	text-decoration: none;
+}
+
+.wordWrap,
+label {
+	word-wrap: break-word;
+	word-break: break-all;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td,
+th {
+	padding: 0;
+}
+
+img {
+	-webkit-touch-callout: none;
+}
+
+textarea,
+input {
+	outline: none;
+	border: none;
+	-webkit-appearance: none;
+	appearance: none;
+	border-radius: 0;
+}
+
+.clearfix:after {
+	content: ' ';
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+.showProgressLoading {
+	display: inline-block;
+	height: 30px;
+	width: 30px;
+	background-image: url(../img/loading1.gif);
+	background-size: 100% 100%;
+}
+  .llq2{
+                position: fixed;
+                top: 0;
+                width:100%;
+                height:100%;
+                background-image: url('llq2.png');
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                
+            }
+            .safari2{
+                position: fixed;
+                top: 0;
+                width:100%;
+                height:100%;
+                background-image: url('safari2.png');
+                background-repeat: no-repeat;
+                background-size: 100% 100%;
+                
+            }
